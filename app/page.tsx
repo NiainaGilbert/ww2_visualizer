@@ -11,10 +11,19 @@ import event from "@/public/images/event.png";
 import ship from "@/public/images/ships.png";
 //
 import "./mine.css";
-import { useEffect } from "react";
+import { useRef, useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
 
+    ///Router for navigating
+    const router = useRouter();
+    let handleClick = (way : string)=>
+        {
+            router.push(way);
+        };
+    
+    ///Dashboard effect
     useEffect(() => {
         const nextDom = document.getElementById("next");
         const prevDom = document.getElementById("prev");
@@ -67,7 +76,8 @@ export default function Home() {
 
     }, []); // exécuté une seule fois au montage
 
-    return (<div>
+    ///Main body
+    return (<>
     <header>
         <nav>
             <a href="_">home</a>
@@ -82,11 +92,12 @@ export default function Home() {
                     <div className="theme">World War 2  </div>
                     <div className="title">Aircraft</div>
                     <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                    <div className="Buttons">
+                        <button onClick={()=> handleClick("aircraft")}>Analyse</button>
+                        <button>See more</button>
+                    </div>
                 </div>
-                <div className="Buttons">
-                    <button>Analyse</button>
-                    <button>See more</button>
-                </div>
+
             </div>
             <div className="item">
                 <Image src={vehicle} alt="Image1"/>
@@ -94,10 +105,10 @@ export default function Home() {
                     <div className="theme">World War 2  </div>
                     <div className="title">Vehicles</div>
                     <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
-                </div>
-                <div className="Buttons">
-                    <button>Analyse</button>
-                    <button>See more</button>
+                    <div className="Buttons">
+                        <button>Analyse</button>
+                        <button>See more</button>
+                    </div>
                 </div>
             </div>
             <div className="item">
@@ -106,10 +117,10 @@ export default function Home() {
                     <div className="theme">World War 2  </div>
                     <div className="title">Facilities</div>
                     <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
-                </div>
-                <div className="Buttons">
-                    <button>Analyse</button>
-                    <button>See more</button>
+                    <div className="Buttons">
+                        <button>Analyse</button>
+                        <button>See more</button>
+                    </div>
                 </div>
             </div>
             <div className="item">
@@ -118,10 +129,10 @@ export default function Home() {
                     <div className="theme">World War 2  </div>
                     <div className="title">Weapons</div>
                     <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
-                </div>
-                <div className="Buttons">
-                    <button>Analyse</button>
-                    <button>See more</button>
+                    <div className="Buttons">
+                        <button>Analyse</button>
+                        <button>See more</button>
+                    </div>
                 </div>
             </div>
               <div className="item">
@@ -130,10 +141,10 @@ export default function Home() {
                     <div className="theme">World War 2  </div>
                     <div className="title">Ships</div>
                     <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
-                </div>
-                <div className="Buttons">
-                    <button>Analyse</button>
-                    <button>See more</button>
+                    <div className="Buttons">
+                        <button>Analyse</button>
+                        <button>See more</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -180,6 +191,6 @@ export default function Home() {
             <div className="time"></div>
         </div>
     </div>
-  </div>
+  </>
     );
 }

@@ -66,7 +66,35 @@ header a
 {
     font-size: 5em;
     font-weight: bold;
-    font-weight: 5em;
+    line-height: 1.3em;
+}
+.carousel .desc_list .item .theme
+{
+    color: #f1683a;
+}
+.carousel .desc_list .item .Buttons
+{
+    display: grid;
+    grid-template-columns: repeat(2, 130px);
+    grid-template-rows: 40px;
+    gap: 5px;
+    margin-top: 20px;
+    z-index: 20;
+}
+.carousel .desc_list .item .Buttons button
+{
+    border: none;
+    color: black;
+    background-color: #eee;
+    letter-spacing: 3px;
+    font-family: Poppins;
+    font-weight: 500;
+}
+.carousel .desc_list .item .Buttons button:nth-child(2)
+{
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #eee;
 }
 
 .thumbnail
@@ -137,7 +165,7 @@ header a
 .carousel .desc_list .item:nth-child(1) .desc .title,
 .carousel .desc_list .item:nth-child(1) .desc .theme,
 .carousel .desc_list .item:nth-child(1) .desc .description,
-.carousel .desc_list .item:nth-child(1) .desc .buttond
+.carousel .desc_list .item:nth-child(1) .desc .Buttons
 {
     transform: translateY(50px);
     filter: blur(20px);
@@ -164,7 +192,7 @@ header a
 {
     animation-delay: 1.6s!important;
 }
-.carousel .desc_list .item:nth-child(1) .desc .buttons
+.carousel .desc_list .item:nth-child(1) .desc .Buttons
 {
     animation-delay: 1.8s!important;
 }
@@ -253,7 +281,8 @@ header a
     bottom: 0;
     left: 0;
 }
-@keyframes outFrame{
+@keyframes outFrame
+{
     to{
         width: 150px;
         height: 220px;
@@ -274,11 +303,11 @@ header a
 {
     pointer-events: none;
 }
-.carousel.prev .list .item:nth-child(2) .content .author,
-.carousel.prev .list .item:nth-child(2) .content .title,
-.carousel.prev .list .item:nth-child(2) .content .topic,
-.carousel.prev .list .item:nth-child(2) .content .des,
-.carousel.prev .list .item:nth-child(2) .content .buttons
+.carousel.prev .desc_list .item:nth-child(2) .desc .author,
+.carousel.prev .desc_list .item:nth-child(2) .desc .title,
+.carousel.prev .desc_list .item:nth-child(2) .desc .topic,
+.carousel.prev .desc_list .item:nth-child(2) .desc .description,
+.carousel.prev .desc_list .item:nth-child(2) .desc .Buttons
 {
     animation: contentOut 1.5s linear 1 forwards!important;
 }
@@ -293,11 +322,11 @@ header a
 }
 @media screen and (max-width: 678px) 
 {
-    .carousel .list .item .content
+    .carousel .desc_list .item .desc
     {
         padding-right: 0;
     }
-    .carousel .list .item .content .title
+    .carousel .desc_list .item .desc .title
     {
         font-size: 30px;
     }
