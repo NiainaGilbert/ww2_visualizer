@@ -1,65 +1,185 @@
+"use client";
+
+//iMAGE
 import Image from "next/image";
+import aircraft from "@/public/images/aircraft.png";
+import vehicle from "@/public/images/vehicles.png";
+import facility from "@/public/images/facility.png";
+import weapon from "@/public/images/weapon.png";
+import book from "@/public/images/book.png";
+import event from "@/public/images/event.png";
+import ship from "@/public/images/ships.png";
+//
+import "./mine.css";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+
+    useEffect(() => {
+        const nextDom = document.getElementById("next");
+        const prevDom = document.getElementById("prev");
+
+        const carouselDom = document.querySelector(".carousel");
+        const SliderDom = carouselDom.querySelector(".carousel .desc_list");
+        const thumbnailBorderDom = document.querySelector(".carousel .thumbnail");
+        const thumbnailItemsDom = thumbnailBorderDom.querySelectorAll(".item");
+        const timeDom = document.querySelector(".carousel .time");
+
+        thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+
+        let timeRunning = 3000;
+        let timeAutoNext = 7000;
+
+        const showSlider = (type) => {
+            const SliderItemsDom = SliderDom.querySelectorAll(".carousel .desc_list .item");
+            const thumbnailItemsDom = document.querySelectorAll(".carousel .thumbnail .item");
+
+            if (type === "next") 
+            {
+                SliderDom.appendChild(SliderItemsDom[0]);
+                thumbnailBorderDom.appendChild(thumbnailItemsDom[0]);
+                carouselDom.classList.add("next");
+            } 
+            else 
+              {
+                SliderDom.prepend(SliderItemsDom[SliderItemsDom.length - 1]);
+                thumbnailBorderDom.prepend(thumbnailItemsDom[thumbnailItemsDom.length - 1]);
+                carouselDom.classList.add("prev");
+            }
+
+            clearTimeout(runTimeOut);
+            runTimeOut = setTimeout(() => {
+                carouselDom.classList.remove("next");
+                carouselDom.classList.remove("prev");
+            }, timeRunning);
+
+            clearTimeout(runNextAuto);
+            runNextAuto = setTimeout(() => {
+                nextDom.click();
+            }, timeAutoNext);
+        };
+
+        nextDom.onclick = () => showSlider("next");
+        prevDom.onclick = () => showSlider("prev");
+
+        let runTimeOut;
+        let runNextAuto = setTimeout(() => nextDom.click(), timeAutoNext);
+
+    }, []); // exécuté une seule fois au montage
+
+    return (<div>
+    <header>
+        <nav>
+            <a href="_">home</a>
+            <a href="_">About</a>
+        </nav>
+    </header>
+    <div className="carousel">
+        <div className="desc_list">
+            <div className="item">
+                <Image src={aircraft} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">World War 2  </div>
+                    <div className="title">Aircraft</div>
+                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                </div>
+                <div className="Buttons">
+                    <button>Analyse</button>
+                    <button>See more</button>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={vehicle} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">World War 2  </div>
+                    <div className="title">Vehicles</div>
+                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                </div>
+                <div className="Buttons">
+                    <button>Analyse</button>
+                    <button>See more</button>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={facility} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">World War 2  </div>
+                    <div className="title">Facilities</div>
+                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                </div>
+                <div className="Buttons">
+                    <button>Analyse</button>
+                    <button>See more</button>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={weapon} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">World War 2  </div>
+                    <div className="title">Weapons</div>
+                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                </div>
+                <div className="Buttons">
+                    <button>Analyse</button>
+                    <button>See more</button>
+                </div>
+            </div>
+              <div className="item">
+                <Image src={ship} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">World War 2  </div>
+                    <div className="title">Ships</div>
+                    <p className="description">Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore eum officiis cumque repellendus eligendi eos magnam ab adipisci laborum ipsum blanditiis itaque cum, consequuntur unde, vitae sit non, voluptatem consectetur!</p>
+                </div>
+                <div className="Buttons">
+                    <button>Analyse</button>
+                    <button>See more</button>
+                </div>
+            </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="thumbnail">
+            <div className="item">
+                <Image src={aircraft} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">Aircraft</div>
+                    <div className="description">description</div>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={vehicle} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">Vehicles</div>
+                    <div className="description">description</div>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={facility} alt="Image1"/>
+                <div className="desc">
+                    <div className="theme">Facilities</div>
+                    <div className="description">description</div>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={weapon} alt=""/>
+                <div className="desc">
+                    <div className="theme">Weapons</div>
+                    <div className="description">description</div>
+                </div>
+            </div>
+            <div className="item">
+                <Image src={ship} alt=""/>
+                <div className="desc">
+                    <div className="theme">Ships</div>
+                    <div className="description">description</div>
+                </div>
+            </div>
         </div>
-      </main>
+        <div className="arrows">
+            <button id="prev">{"<"}</button>
+            <button id="next">{">"}</button>
+            <div className="time"></div>
+        </div>
     </div>
-  );
+  </div>
+    );
 }
